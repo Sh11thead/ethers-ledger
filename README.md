@@ -1,25 +1,28 @@
 Ethers-Ledger
 ================
 
-This is a fork of @ethersproject/hardware-wallets.
+This is a fork of @anders-torbjornsen/hardware-wallets.
 
 This only supports NodeJS, as for browsers metamask supports Ledger anyway.
 
-**NOTE: This is not maintained, I now use frame to deploy/interact with contracts from nodeJS scripts with a Ledger**
+Made some minor changes to skip the step of fetching information from the Ledger server to speed things up
 
 Installation
 =============
 
-`npm install @anders-t/ethers-ledger`
+`npm install @juliankang/ethers-ledger`
 
 API
 ===
 
 ```
-import { LedgerSigner } from "@anders-t/ethers-ledger";
-const signer = new LedgerSigner(provider, path);
-// By default:
-//   - path is the default Ethereum path (i.e.  `m/44'/60'/0'/0/0`)
+import { LedgerSigner } from "@juliankang/ethers-ledger";
+
+const provider = new ethers.providers.JsonRpcProvider("https://rpc.ankr.com/eth_goerli");
+const path = `m/44'/60'/1'/0/0`;
+const resolutionConfig = {nft: false, externalPlugins: false, erc20: false};
+const signer = new LedgerSigner(provider, path, resolutionConfig);
+
 ```
 
 License

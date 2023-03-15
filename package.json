@@ -1,11 +1,11 @@
 {
-  "name": "@anders-t/ethers-ledger",
-  "version": "1.0.4",
+  "name": "@juliankang/ethers-ledger",
+  "version": "1.0.0",
   "description": "Hardware Wallet support for ethers (NodeJS only).",
-  "author": "Anders Torbjørnsen <anders.torbjornsen87@gmail.com>",
+  "author": "JulianKang <ksl2945@gmail.com>",
   "dependencies": {
-    "@ledgerhq/hw-app-eth": "^6.24.0",
-    "@ledgerhq/hw-transport-node-hid": "^6.20.0",
+    "@ledgerhq/hw-app-eth": "^6.32.0",
+    "@ledgerhq/hw-transport-node-hid": "^6.27.12",
     "ethers": "^5.5.4"
   },
   "keywords": [
@@ -21,12 +21,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/anders-torbjornsen/ethers-ledger.git"
+    "url": "git://github.com/Sh11thead/ethers-ledger.git"
   },
-  "bugs": {
-    "url": "https://github.com/anders-torbjornsen/ethers-ledger/issues"
-  },
-  "homepage": "https://github.com/anders-torbjornsen/ethers-ledger",
+  "homepage": "https://github.com/Sh11thead/ethers-ledger",
   "scripts": {
     "build": "tsc"
   },

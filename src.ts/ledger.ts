@@ -26,10 +26,12 @@ export class LedgerSigner extends ethers.Signer {
 
     readonly _eth: Promise<Eth>;
 
-    constructor(provider?: ethers.providers.Provider, path?: string) {
+    _resolutionConfig: ResolutionConfig;
+
+    constructor(provider?: ethers.providers.Provider, path?: string, resolutionConfig?: ResolutionConfig) {
         super();
         if (path == null) { path = defaultPath; }
-
+        if (resolutionConfig) { this._resolutionConfig = resolutionConfig }
         ethers.utils.defineReadOnly(this, "path", path);
         ethers.utils.defineReadOnly(this, "provider", provider || null);
 
@@ -117,7 +119,7 @@ export class LedgerSigner extends ethers.Signer {
         const unsignedTx = ethers.utils.serializeTransaction(baseTx).substring(2);
 
         const loadConfig: LoadConfig = {};
-        const resolutionConfig: ResolutionConfig = { externalPlugins: true, erc20: true };
+        const resolutionConfig: ResolutionConfig = this._resolutionConfig? this._resolutionConfig:{ externalPlugins: true, erc20: true };
         const resolution: LedgerEthTransactionResolution = await ledgerService.resolveTransaction(unsignedTx, loadConfig, resolutionConfig);
 
         const sig = await this._retry((eth) => eth.signTransaction(this.path, unsignedTx, resolution));
